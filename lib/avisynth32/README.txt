@@ -1,0 +1,1 @@
+Put 32bit version of AviSynth.lib here.

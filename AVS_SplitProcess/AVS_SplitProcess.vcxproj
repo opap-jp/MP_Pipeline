@@ -70,25 +70,29 @@
     <LinkIncremental>true</LinkIncremental>
     <TargetName>MP_Pipeline</TargetName>
     <TargetExt>.dll</TargetExt>
-    <LibraryPath>$(SolutionDir)lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)lib;$(SolutionDir)lib\avisynth32;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <TargetName>MP_Pipeline</TargetName>
     <TargetExt>.dll</TargetExt>
-    <LibraryPath>$(SolutionDir)lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)lib;$(SolutionDir)lib\avisynth64;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.dll</TargetExt>
     <TargetName>MP_Pipeline</TargetName>
-    <LibraryPath>$(SolutionDir)lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)lib;$(SolutionDir)lib\avisynth32;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <TargetExt>.dll</TargetExt>
     <TargetName>MP_Pipeline</TargetName>
-    <LibraryPath>$(SolutionDir)lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)lib;$(SolutionDir)lib\avisynth64;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -109,6 +113,8 @@
       <ModuleDefinitionFile>lib.def</ModuleDefinitionFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <LargeAddressAware>true</LargeAddressAware>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>gen_filter_def.py</Command>
@@ -136,12 +142,14 @@
       <ModuleDefinitionFile>lib.def</ModuleDefinitionFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <LargeAddressAware>true</LargeAddressAware>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>gen_filter_def.py</Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>copy /y "$(TargetPath)" "$(SolutionDir)$(Configuration)\$(TargetFileName).win64"</Command>
+      <Command>copy /y "$(TargetPath)" "$(SolutionDir)Win32\$(Configuration)\$(TargetFileName).win64</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -164,6 +172,8 @@
       <AdditionalDependencies>alibcof32.lib;avisynth.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>lib.def</ModuleDefinitionFile>
       <LargeAddressAware>true</LargeAddressAware>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>gen_filter_def.py</Command>
@@ -192,27 +202,29 @@
       <AdditionalDependencies>alibcof64.lib;avisynth.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ModuleDefinitionFile>lib.def</ModuleDefinitionFile>
       <LargeAddressAware>true</LargeAddressAware>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>gen_filter_def.py</Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>copy /y "$(TargetPath)" "$(SolutionDir)$(Configuration)\$(TargetFileName).win64"</Command>
+      <Command>copy /y "$(TargetPath)" "$(SolutionDir)Win32\$(Configuration)\$(TargetFileName).win64</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="lib.def" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\Dropbox\Projects\AVS_SplitProcess\AVS_SplitProcess\asmlib.h" />
-    <ClInclude Include="..\..\..\..\Dropbox\Projects\AVS_SplitProcess\AVS_SplitProcess\avisynth.h" />
-    <ClInclude Include="..\..\..\..\Dropbox\Projects\AVS_SplitProcess\AVS_SplitProcess\avisynth_videoinfo_26.h" />
-    <ClInclude Include="..\..\..\..\Dropbox\Projects\AVS_SplitProcess\AVS_SplitProcess\MP_Pipeline.def.h" />
-    <ClInclude Include="..\..\..\..\Dropbox\Projects\AVS_SplitProcess\AVS_SplitProcess\SelectThunkEvery.def.h" />
-    <ClInclude Include="..\..\..\..\Dropbox\Projects\AVS_SplitProcess\AVS_SplitProcess\SharedMemoryClient.def.h" />
-    <ClInclude Include="..\..\..\..\Dropbox\Projects\AVS_SplitProcess\AVS_SplitProcess\SharedMemoryServer.def.h" />
-    <ClInclude Include="..\..\..\..\Dropbox\Projects\AVS_SplitProcess\AVS_SplitProcess\ThunkedInterleave.def.h" />
-    <ClInclude Include="..\..\..\..\Dropbox\Projects\AVS_SplitProcess\AVS_SplitProcess\trace.h" />
+    <ClInclude Include="asmlib.h" />
+    <ClInclude Include="avisynth.h" />
+    <ClInclude Include="avisynth_videoinfo_26.h" />
+    <ClInclude Include="MP_Pipeline.def.h" />
+    <ClInclude Include="SelectThunkEvery.def.h" />
+    <ClInclude Include="SharedMemoryClient.def.h" />
+    <ClInclude Include="SharedMemoryServer.def.h" />
+    <ClInclude Include="ThunkedInterleave.def.h" />
+    <ClInclude Include="trace.h" />
     <ClInclude Include="CondVar.h" />
     <ClInclude Include="fast_memory_functions.h" />
     <ClInclude Include="FrameFetcher.h" />
@@ -239,8 +251,8 @@
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\Dropbox\Projects\AVS_SplitProcess\AVS_SplitProcess\avisynth_videoinfo_26.cpp" />
-    <ClCompile Include="..\..\..\..\Dropbox\Projects\AVS_SplitProcess\AVS_SplitProcess\trace.cpp" />
+    <ClCompile Include="avisynth_videoinfo_26.cpp" />
+    <ClCompile Include="trace.cpp" />
     <ClCompile Include="avisynth_init.cpp" />
     <ClCompile Include="CondVar.cpp" />
     <ClCompile Include="FrameFetcher.cpp" />
